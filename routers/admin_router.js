@@ -25,7 +25,6 @@ admin_route.use(bodyparser.urlencoded({extended:true}))
 
 admin_route.set("view engine","ejs")
 admin_route.set('views',path.join(__dirname,"../views/admin"))
-// authotication 
 
 admin_route.get("/admin",loged_in,admin_controller.load_adminlogin);
 admin_route.post("/verify",admin_controller.admin_verify);
@@ -94,7 +93,6 @@ admin_route.post("/get_customereport",salereport_controller.load_customreport);
 
 
 // for loading 404 page
-admin_route.use(pageload404)
 
 
 module.exports= admin_route;
