@@ -6,7 +6,8 @@ const dbconnect = async ()=>{
        await  mongoose.connect(uri);
         console.log("db connnected sucessufully")
     } catch (error) {
-        console.log(error+"SOMETHING RONG IN THE DB CONNECTION")
+        console.log(error + " SOMETHING RONG IN THE DB CONNECTION")
+        throw error; // Re-throw to inform index.js
     }
 }
 
