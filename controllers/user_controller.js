@@ -144,15 +144,19 @@ const signup_user = async (req, res) => {
       text: ` Hello, your OTP code is '${otp}' It will be expire in 1 minute.`,
     };
 
-    // console.log('Transporter Config:', transporter.options);
-
     const sendMail = async () => {
       try {
         await transporter.sendMail(mailOptions);
-
-        console.log("Email has been sent!");
+        console.log("✅ OTP Email has been sent successfully!");
       } catch (error) {
-        console.log("Error sending email:", error);
+        console.error("-----------------------------------------")
+        console.error("❌ ERROR sending email:");
+        console.error(`📝 Message: ${error.message}`);
+        if (error.code === 'EAUTH') {
+          console.error("💡 TIP: Gmail login failed. You likely need an 'App Password'.");
+          console.error("👉 Directions: Google Account -> Security -> 2-Step Verification -> App Passwords.");
+        }
+        console.error("-----------------------------------------")
       }
     };
     await sendMail();
@@ -294,10 +298,16 @@ const resend_otp = async (req, res) => {
     const sendMail = async () => {
       try {
         await transporter.sendMail(mailOptions);
-
-        console.log("Email has been sent!");
+        console.log("✅ Resend OTP Email has been sent successfully!");
       } catch (error) {
-        console.log("Error sending email:", error);
+        console.error("-----------------------------------------")
+        console.error("❌ ERROR sending resend email:");
+        console.error(`📝 Message: ${error.message}`);
+        if (error.code === 'EAUTH') {
+          console.error("💡 TIP: Gmail login failed. You likely need an 'App Password'.");
+          console.error("👉 Directions: Google Account -> Security -> 2-Step Verification -> App Passwords.");
+        }
+        console.error("-----------------------------------------")
       }
     };
     await sendMail();
@@ -489,10 +499,16 @@ const resetpass_mail = async (req, res) => {
       const sendMail = async () => {
         try {
           await transporter.sendMail(mailOptions);
-
-          console.log("Email has been sent!");
+          console.log("✅ Password Reset Email has been sent successfully!");
         } catch (error) {
-          console.log("Error sending email:", error);
+          console.error("-----------------------------------------")
+          console.error("❌ ERROR sending reset email:");
+          console.error(`📝 Message: ${error.message}`);
+          if (error.code === 'EAUTH') {
+            console.error("💡 TIP: Gmail login failed. You likely need an 'App Password'.");
+            console.error("👉 Directions: Google Account -> Security -> 2-Step Verification -> App Passwords.");
+          }
+          console.error("-----------------------------------------")
         }
       };
       await sendMail();

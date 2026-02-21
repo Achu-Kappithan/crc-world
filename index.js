@@ -46,4 +46,9 @@ const admin_route = require("./routers/admin_router");
 app.use('/',admin_route);
 
 const URL = process.env.URL
-app.listen(port,()=>console.log(`server is running at ${URL}`))
+app.listen(port, "0.0.0.0", () => {
+    console.log("-----------------------------------------")
+    console.log(`🚀 Server is running on port: ${port}`)
+    console.log(`🔗 API URL: ${URL}`)
+    console.log("-----------------------------------------")
+});
