@@ -46,17 +46,3 @@ app.use('/',admin_route);
 
 const URL = process.env.URL;
 
-(async () => {
-    try {
-        await dbconnect();
-        app.listen(port, "0.0.0.0", () => {
-            console.log("-----------------------------------------")
-            console.log(`🚀 Server is running on port: ${port}`)
-            console.log(`🔗 API URL: ${URL}`)
-            console.log("-----------------------------------------")
-        });
-    } catch (err) {
-        console.error("❌ Failed to start server due to DB connection error:", err.message);
-        process.exit(1);
-    }
-})();
