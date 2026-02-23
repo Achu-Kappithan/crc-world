@@ -13,7 +13,6 @@ app.use(session_config)
 app.use(express.json());
 
 const port = process.env.PORT || 7500;
-dbconnect()
 const flash = require("connect-flash")
 
 app.use(nocache());
@@ -45,10 +44,19 @@ app.use('/assets', express.static(path.join(__dirname, 'public/admin/assets')));
 const admin_route = require("./routers/admin_router");
 app.use('/',admin_route);
 
-const URL = process.env.URL
-app.listen(port, "0.0.0.0", () => {
-    console.log("-----------------------------------------")
-    console.log(`🚀 Server is running on port: ${port}`)
-    console.log(`🔗 API URL: ${URL}`)
-    console.log("-----------------------------------------")
-});
+const URL = process.env.URL;
+
+(async () => {
+    try {
+        await dbconnect();
+        app.listen(port, "0.0.0.0", () => {
+            console.log("-----------------------------------------")
+            console.log(`🚀 Server is running on port: ${port}`)
+            console.log(`🔗 API URL: ${URL}`)
+            console.log("-----------------------------------------")
+        });
+    } catch (err) {
+        console.error("❌ Failed to start server due to DB connection error:", err.message);
+        process.exit(1);
+    }
+})();
