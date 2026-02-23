@@ -140,3 +140,26 @@
 			return false;
 		  });
 	</script>
+<script>
+    window.addEventListener('load', function() {
+        const loader = document.getElementById('premium-loader');
+        if (loader) {
+            setTimeout(() => {
+                loader.classList.add('loader-hidden');
+            }, 500); // Small delay for smooth feel
+        }
+    });
+
+    // Show helpful message if Render takes too long to wake up
+    setTimeout(() => {
+        const delayedMessage = document.getElementById('delayed-message');
+        const loader = document.getElementById('premium-loader');
+        const mainLoaderText = document.getElementById('loader-main-text');
+        
+        // Only show if the loader is still visible
+        if (loader && !loader.classList.contains('loader-hidden')) {
+            if (delayedMessage) delayedMessage.style.display = 'block';
+            if (mainLoaderText) mainLoaderText.innerText = 'Waking up server...';
+        }
+    }, 8000); // 8 seconds delay
+</script>
