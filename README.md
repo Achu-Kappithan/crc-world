@@ -72,33 +72,4 @@ CRC WORLD is a robust web application built with the MERN stack (well, MEAN-ish 
 
 ---
 
-## 🌿 Git Workflow Essentials
 
-If you're new to the repo or Git, here are the basic commands to get you started:
-
-### Initializing & Committing
-```bash
-# Check status of your files
-git status
-
-# Stage all changes
-git add .
-
-# Commit changes with a message
-git commit -m "feat: added new feature descriptive message"
-```
-
-### Branching
-```bash
-# Create a new branch for a feature
-git checkout -b feature/your-feature-name
-
-# Push your branch to GitHub
-git push origin feature/your-feature-name
-```
-
----
-
-## 📝 License
-
-This project is licensed under the [ISC License](LICENSE).
