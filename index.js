@@ -46,17 +46,20 @@ app.use('/',admin_route);
 
 const URL = process.env.URL;
 
+// Start server immediately to wake up Render faster
+app.listen(port, () => {
+    console.log("-----------------------------------------")
+    console.log(` Server is running on port: ${port}`)
+    console.log(` API URL: ${URL || 'Localhost'}`)
+    console.log("-----------------------------------------")
+});
+
+// Connect to DB in the background
 (async () => {
     try {
         await dbconnect();
-        app.listen(port, "0.0.0.0", () => {
-            console.log("-----------------------------------------")
-            console.log(`Server is running on port: ${port}`)
-            console.log(`API URL: ${URL}`)
-            console.log("-----------------------------------------")
-        });
+        console.log("Database initialized and ready.");
     } catch (err) {
-        console.error("Failed to start server due to DB connection error:", err.message);
-        process.exit(1);
+        console.error("Critical: Failed to connect to DB after startup:", err.message);
     }
 })();

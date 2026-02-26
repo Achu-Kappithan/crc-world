@@ -11,3 +11,26 @@
       </div>
     </div>
 </footer>
+
+<script>
+    window.addEventListener('load', function() {
+        const loader = document.getElementById('premium-loader');
+        if (loader) {
+            setTimeout(() => {
+                loader.classList.add('loader-hidden');
+            }, 400); 
+        }
+    });
+
+    // Show helpful message if Render takes too long to wake up
+    setTimeout(() => {
+        const delayedMessage = document.getElementById('delayed-message');
+        const loader = document.getElementById('premium-loader');
+        const mainLoaderText = document.getElementById('loader-main-text');
+        
+        if (loader && !loader.classList.contains('loader-hidden')) {
+            if (delayedMessage) delayedMessage.style.display = 'block';
+            if (mainLoaderText) mainLoaderText.innerText = 'Waking up server...';
+        }
+    }, 8000); 
+</script>
